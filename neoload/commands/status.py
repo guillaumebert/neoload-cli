@@ -1,3 +1,5 @@
+import os
+import sys
 import click
 
 from neoload_cli_lib import user_data, tools
@@ -12,8 +14,9 @@ def cli():
     else:
         print(login)
 
-        environ = {}
-        environ["interactive_implied"] = tools.is_user_interactive_implied()
-        environ["interactive_environment_set"] = tools.get_user_interactive_value()
-        environ["interactive_effective"] = tools.is_user_interactive()
-        logging.debug(environ)
+        logging.debug({
+            "interactive_ci": tools.are_any_ci_env_vars_active(),
+            "interactive_environment_variable": os.getenv(tools.__nl_interactive_env_var),
+            "interactive_tty": sys.__stdin__.isatty(),
+            "interactive_effective": tools.is_user_interactive()
+        })
