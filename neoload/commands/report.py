@@ -44,8 +44,15 @@ __resolver = Resolver(__endpoint, rest_crud.base_endpoint_with_workspace)
 meta_key = 'result id'
 gprint = print
 
-MAX_CALLS_PER_SECOND = max(1,math.floor(((200 - 50) / 60)))
+# in lew of a broader retry mechanism, this is (stated API limit) - (some overhead)
+# can be improved by using response header 'Retry-after' and implemented in rest_crud
+MAX_CALLS_PER_SECOND = max(1,math.floor(((300 - 50) / 60)))
 REQUEST_COUNT = 0
+# variables to handle request limiting queue logic, to be replaced with future retry logic
+rest_calls = []
+calls_cleanup_indicator = 0
+calls_lock = Lock()
+
 
 @click.command()
 @click.option('--template', help="A built-in known report type or the file path to the .j2 template. Built-in types include:    'builtin:transactions-csv'     'builtin:transactions-json'")
@@ -55,12 +62,18 @@ REQUEST_COUNT = 0
 @click.option('--max-rps', type=int, help="Explicit control over max concurrency of API calls")
 @click.option('--type', 'report_type',
                 type=click.Choice(['single','trends'], case_sensitive=False),
-                required=False, default="single")
+                required=False, default="single",
+                help="Specify which type of JSON data document to compile (default is 'single')")
 @click.argument("name", type=str, required=False)
 def cli(template, json_in, out_file, filter, max_rps, report_type, name):
     """Generate builtin or custom Jinja reports based on test results data
-    Example: neoload report --template builtin:transactions-csv single cur
+    Example: neoload report --template builtin:transactions-csv
     """
+
+    if all(v is None for v in [template,json_in,out_file,filter]):
+        print_extended_help()
+        tools.system_exit({'code':1,'message':''})
+        return
 
     global gprint
     global MAX_CALLS_PER_SECOND
@@ -428,12 +441,12 @@ def fill_time_binding(time_binding):
         raise ValueError("Something went wrong while fill_time_binding")
 
 
-time_part_mod_to_sec = {
-    "h": lambda x: x * 60 * 60,
-    "m": lambda x: x * 60,
-    "s": lambda x: x
-}
 def translate_time_part_to_seconds(total_duration_sec, part_spec):
+    time_part_mod_to_sec = {
+        "h": lambda x: x * 60 * 60,
+        "m": lambda x: x * 60,
+        "s": lambda x: x
+    }
     try:
         if part_spec.endswith("%"):
             return (int(part_spec.replace("%","")) / 100.0) * total_duration_sec
@@ -988,10 +1001,6 @@ User Path\tElement\tCount\tMin\tAvg\tMax\tPerc 50\tPerc 90\tPerc 95\tPerc 99\tSu
 """{{ txn.aggregate.failureCount }}\t{{ txn.aggregate.failureRate }}
 {% endfor %}""".strip()
 
-rest_calls = []
-calls_cleanup_indicator = 0
-calls_lock = Lock()
-
 def cleanup_completed_calls():
     back_step = get_epoch() - (1000)
     l = list(filter(lambda a: a["completed"] and a["epoch"]<back_step, rest_calls))
@@ -1005,8 +1014,6 @@ def cleanup_completed_calls():
                 logging.getLogger().debug("Clean couldn't remove an e")
         calls_lock.release()
 
-def get_incomplete_calls():
-    return list(filter(lambda a: a["sent"] and not a["completed"], rest_calls))
 def get_current_calls_per_second_rate():
     back_step = get_epoch() - (1000)
     l = len(list(filter(lambda a: a["sent"] and a["epoch"]>=back_step, rest_calls)))
@@ -1054,3 +1061,50 @@ def rest_crud_get(url):
     ret = rest_crud.get(url)
     call["completed"] = True
     return ret
+
+def print_extended_help():
+    ctx = click.get_current_context()
+    cli_help = ctx.get_help()
+
+    print(cli_help + """
+
+
+Built-in Templates:
+
+    * builtin:transactions --> transaction aggregates in JSON format
+    * builtin:transactions-csv --> transaction aggregates in CSV format
+    * builtin:console-summary --> test summary and transaction aggregates in human-readable format
+
+Filtering:
+
+    * timespan: [from]-[to]
+        * Either from or to components are optional, but not both
+        * Values can be 0-100 for percentage of the total duration of test
+        * Human-readable time format including #[h|m|s], such as 10m or 5m30s
+
+    * elements:
+        * a comma or semicolon separated list of element names or IDs
+        * can include regex
+
+    * results:
+        * a comma or semicolon separated list of result set specifiers, such as:
+            * negative (track back N number of results since current test-results)
+            * positive (track forward N number of results since current test-results)
+            * specific test-result IDs (for additional baselines)
+
+
+Examples:
+
+    * Print a simple list of transaction aggregates in CSV format (semicolon delimited)
+        neoload report --template builtin:transactions-csv
+
+    * Compiles and produces transaction aggregate data based on only data from a specific timespan
+        neoload report --template builtin:transactions-csv --filter="timespan:10%-90%"
+
+    * Compiles JSON data and writes to a temp file, no applying templates
+        neoload report --out-file ~/temp.json
+
+    * Uses pre-compiled JSON data file, applies a custom template, and writes output to a file
+        neoload report --json-in ~/temp.json --template tests/resources/jinja/sample-custom-report.html.j2 --out-file ~/temp.html
+
+    """)
