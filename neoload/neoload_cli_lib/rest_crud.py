@@ -1,3 +1,4 @@
+import json
 import logging
 import os
 import sys
@@ -87,6 +88,13 @@ def get_with_pagination(endpoint: str, page_size=200, api_query_params=None):
 
 
 def get(endpoint: str, params=None):
+    x = __handle_error(get_raw(endpoint, params)).json()
+    # print('====\nGET '+endpoint+' params='+str(params)+(' return='+json.dumps(x) if len(x) < 30 else '')+'\n====')
+    print('elif endpoint == \'' + endpoint + '\':\n\treturn \'' + (
+        json.dumps(x) if not endpoint.endswith('/points') else 'POINTS') + '\'\n')
+    # python neoload login --url https://preprod-neoload-api.saas.neotys.com/ --workspace Endurance efffe03df205df15d827e7afe35f24152df764c7cc82b2bb
+    # python neoload report --filter timespan=0%-100% 1c393548-1e78-4632-8dd1-b661fb6cd043 >> unit-test.py
+    return x
     return __handle_error(get_raw(endpoint, params)).json()
 
 
