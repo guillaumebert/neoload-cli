@@ -28,7 +28,7 @@ jobs:
 
       - name: "Prepare NeoLoad test"
         run: >
-          neoload login --url ${{ github.event.inputs.api_url }} --workspace "Default Workspace" ${{ github.event.inputs.token }} \
+          neoload login --url ${{ github.event.inputs.api_url }} --workspace "My Default Workspace" ${{ github.event.inputs.token }} \
                   test-settings --zone ${{ github.event.inputs.zone_id }} --scenario 'simpledemo' createorpatch "My Github Test With CLI" \
                   project --path tests/neoload_projects/simpledemo.yml upload
 
