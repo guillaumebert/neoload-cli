@@ -32,9 +32,6 @@ jobs:
                   test-settings --zone ${{ github.event.inputs.zone_id }} --scenario 'simpledemo' createorpatch "My Github Test With CLI" \
                   project --path tests/neoload_projects/simpledemo.yml upload
 
-      - name: "WKS"
-        run: neoload workspaces use Endurance
-
       - name: "NeoLoad run test"
         run: >
           neoload run 
@@ -45,12 +42,10 @@ jobs:
           --return-0
 
       - name: "Generate Test Report"
-        id: report
-        if: ${{ always() }}
         run: neoload test-results junitsla blablabla
 
       - name: "Publish Test Report"
-        if: steps.report.outcome == 'success'
+        if: ${{ always() }}
         uses: scacap/action-surefire-report@v1
         with:
           report_paths: junit-sla.xml
