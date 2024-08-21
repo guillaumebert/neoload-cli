@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?><resource name="NeoLoadTests">
+   <testsuite name="com.neotys.DefaultSLA.PerTimeInterval.BrowserUser_Create_report">
+      <testcase end="2" name="test_AverageResponseTime" result="failure" start="1">
+         <failure type="NeoLoad SLA"> 
+Container: Home Shared
+Path: User Paths =&gt; BrowserUser_Create_report =&gt; Actions =&gt; Home Shared
+Virtual User: BrowserUser_Create_report
+SLA Profile: DefaultSLA
+SLA Type: Per Time Interval
+Alert Type: Average Response Time
+Project: Sample_Project
+Scenario: WANImpact Local
+
+Alert description: 
+
+if the
+	 Average Response Time &gt;= 4.0
+then
+	 fail
+
+Results: 
+
+Average Response Time = 10.094
+
+Created 2024-08-21 13:35:39 </failure>
+      </testcase>
+      <testcase end="2" name="test_AverageResponseTime1" result="failure" start="1">
+         <failure type="NeoLoad SLA"> 
+Container: submit report
+Path: User Paths =&gt; BrowserUser_Create_report =&gt; Actions =&gt; submit report
+Virtual User: BrowserUser_Create_report
+SLA Profile: DefaultSLA
+SLA Type: Per Time Interval
+Alert Type: Average Response Time
+Project: Sample_Project
+Scenario: WANImpact Local
+
+Alert description: 
+
+if the
+	 Average Response Time &gt;= 4.0
+then
+	 fail
+
+Results: 
+
+Average Response Time = 9.774
+
+Created 2024-08-21 13:35:39 </failure>
+      </testcase>
+      <testcase end="2" name="test_AverageResponseTime2" result="success" start="1">
+         <success type="NeoLoad SLA"> everything is fine </success>
+      </testcase>
+   </testsuite>
+   <testsuite name="com.neotys.DefaultSLA.PerRun.BrowserUser_Create_report">
+      <testcase end="2" name="test_AverageTransactionResponseTime" result="failure" start="1">
+         <failure type="NeoLoad SLA"> 
+Container: Home Shared
+Path: User Paths =&gt; BrowserUser_Create_report =&gt; Actions =&gt; Home Shared
+Virtual User: BrowserUser_Create_report
+SLA Profile: DefaultSLA
+SLA Type: Per Run
+Alert Type: Average Transaction Response Time
+Project: Sample_Project
+Scenario: WANImpact Local
+
+Alert description: 
+
+if the
+	 Average Transaction Response Time &gt;= 4.0
+then
+	 fail
+
+Results: 
+
+Average Transaction Response Time = 9.932
+
+Created 2024-08-21 13:35:39 </failure>
+      </testcase>
+      <testcase end="2" name="test_AverageTransactionResponseTime1" result="failure" start="1">
+         <failure type="NeoLoad SLA"> 
+Container: submit report
+Path: User Paths =&gt; BrowserUser_Create_report =&gt; Actions =&gt; submit report
+Virtual User: BrowserUser_Create_report
+SLA Profile: DefaultSLA
+SLA Type: Per Run
+Alert Type: Average Transaction Response Time
+Project: Sample_Project
+Scenario: WANImpact Local
+
+Alert description: 
+
+if the
+	 Average Transaction Response Time &gt;= 4.0
+then
+	 fail
+
+Results: 
+
+Average Transaction Response Time = 9.673
+
+Created 2024-08-21 13:35:39 </failure>
+      </testcase>
+      <testcase end="2" name="test_AverageTransactionResponseTime2" result="success" start="1">
+         <success type="NeoLoad SLA"> everything is fine </success>
+      </testcase>
+   </testsuite>
+   <testsuite name="com.neotys.DefaultSLA.PerRun.MyiPhoneUser_Create_report">
+      <testcase end="2" name="test_AverageTransactionResponseTime3" result="failure" start="1">
+         <failure type="NeoLoad SLA"> 
+Container: Home Shared
+Path: User Paths =&gt; MyiPhoneUser_Create_report =&gt; Actions =&gt; Home Shared
+Virtual User: MyiPhoneUser_Create_report
+SLA Profile: DefaultSLA
+SLA Type: Per Run
+Alert Type: Average Transaction Response Time
+Project: Sample_Project
+Scenario: WANImpact Local
+
+Alert description: 
+
+if the
+	 Average Transaction Response Time &gt;= 4.0
+then
+	 fail
+
+Results: 
+
+Average Transaction Response Time = 10.185
+
+Created 2024-08-21 13:35:39 </failure>
+      </testcase>
+      <testcase end="2" name="test_AverageTransactionResponseTime4" result="success" start="1">
+         <success type="NeoLoad SLA"> everything is fine </success>
+      </testcase>
+   </testsuite>
+   <testsuite name="com.neotys.DefaultSLA.PerTimeInterval.MyiPhoneUser_Create_report">
+      <testcase end="2" name="test_AverageResponseTime3" result="failure" start="1">
+         <failure type="NeoLoad SLA"> 
+Container: Home Shared
+Path: User Paths =&gt; MyiPhoneUser_Create_report =&gt; Actions =&gt; Home Shared
+Virtual User: MyiPhoneUser_Create_report
+SLA Profile: DefaultSLA
+SLA Type: Per Time Interval
+Alert Type: Average Response Time
+Project: Sample_Project
+Scenario: WANImpact Local
+
+Alert description: 
+
+if the
+	 Average Response Time &gt;= 4.0
+then
+	 fail
+
+Results: 
+
+Average Response Time = 13.5
+
+Created 2024-08-21 13:35:39 </failure>
+      </testcase>
+      <testcase end="2" name="test_AverageResponseTime4" result="success" start="1">
+         <success type="NeoLoad SLA"> everything is fine </success>
+      </testcase>
+   </testsuite>
+   <testsuite name="com.neotys.DefaultSLA.PerTimeInterval.MyiPhoneUser_Create_report.api">
+      <testcase end="2" name="test_AverageResponseTime_api" result="success" start="1">
+         <success type="NeoLoad SLA"> everything is fine </success>
+      </testcase>
+   </testsuite>
+</resource>
