@@ -1,0 +1,128 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="5" tests="10" time="0.0">
+	<testsuite disabled="0" errors="0" failures="1" name="com.neotys.TRANSACTION.PerRun.MyiPhoneUser_Create_report" skipped="0" tests="1" time="0">
+		<testcase name="avg-transaction-resp-time" classname="com.neotys.TRANSACTION.PerRun.MyiPhoneUser_Create_report">
+			<failure type="NeoLoad SLA" message="SLA failed">Container: Home Shared
+Path: User Paths &gt; MyiPhoneUser_Create_report &gt; Init &gt; Actions &gt; Home Shared
+Virtual User: MyiPhoneUser_Create_report
+SLA Profile: TRANSACTION
+SLA Type: Per Run
+FAILED Type: avg-transaction-resp-time
+Project: Sample_Project
+Scenario: WANImpact Local
+
+FAILED
+description: if the avg-transaction-resp-time &gt;= [7.0] then fail
+
+Results: 
+
+avg-transaction-resp-time=10.185111%
+
+Created N/A
+</failure>
+		</testcase>
+	</testsuite>
+	<testsuite disabled="0" errors="0" failures="1" name="com.neotys.TRANSACTION.PerRun.BrowserUser_Create_report" skipped="0" tests="1" time="0">
+		<testcase name="avg-transaction-resp-time" classname="com.neotys.TRANSACTION.PerRun.BrowserUser_Create_report">
+			<failure type="NeoLoad SLA" message="SLA failed">Container: Home Shared
+Path: User Paths &gt; BrowserUser_Create_report &gt; Init &gt; Actions &gt; Home Shared
+Virtual User: BrowserUser_Create_report
+SLA Profile: TRANSACTION
+SLA Type: Per Run
+FAILED Type: avg-transaction-resp-time
+Project: Sample_Project
+Scenario: WANImpact Local
+
+FAILED
+description: if the avg-transaction-resp-time &gt;= [7.0] then fail
+
+Results: 
+
+avg-transaction-resp-time=9.932083%
+
+Created N/A
+</failure>
+		</testcase>
+	</testsuite>
+	<testsuite disabled="0" errors="0" failures="1" name="com.neotys.TRANSACTION.PerRun.BrowserUser_Create_report" skipped="0" tests="1" time="0">
+		<testcase name="avg-transaction-resp-time" classname="com.neotys.TRANSACTION.PerRun.BrowserUser_Create_report">
+			<failure type="NeoLoad SLA" message="SLA failed">Container: submit report
+Path: User Paths &gt; BrowserUser_Create_report &gt; Init &gt; Actions &gt; submit report
+Virtual User: BrowserUser_Create_report
+SLA Profile: TRANSACTION
+SLA Type: Per Run
+FAILED Type: avg-transaction-resp-time
+Project: Sample_Project
+Scenario: WANImpact Local
+
+FAILED
+description: if the avg-transaction-resp-time &gt;= [7.0] then fail
+
+Results: 
+
+avg-transaction-resp-time=9.673166%
+
+Created N/A
+</failure>
+		</testcase>
+	</testsuite>
+	<testsuite disabled="0" errors="0" failures="0" name="com.neotys.TRANSACTION.PerRun.BrowserUser_Create_report" skipped="0" tests="1" time="0">
+		<testcase name="avg-transaction-resp-time" classname="com.neotys.TRANSACTION.PerRun.BrowserUser_Create_report"/>
+	</testsuite>
+	<testsuite disabled="0" errors="0" failures="0" name="com.neotys.TRANSACTION.PerRun.MyiPhoneUser_Create_report" skipped="0" tests="1" time="0">
+		<testcase name="avg-transaction-resp-time" classname="com.neotys.TRANSACTION.PerRun.MyiPhoneUser_Create_report"/>
+	</testsuite>
+	<testsuite disabled="0" errors="0" failures="1" name="com.neotys.TRANSACTION.PerInterval" skipped="0" tests="1" time="0">
+		<testcase name="avg-resp-time" classname="com.neotys.TRANSACTION.PerInterval">
+			<failure type="NeoLoad SLA" message="SLA failed">Container: Home Shared
+Path: User Paths &gt;  &gt; Init &gt;  &gt; Home Shared
+Virtual User: 
+SLA Profile: TRANSACTION
+SLA Type: Per Interval
+FAILED Type: avg-resp-time
+Project: Sample_Project
+Scenario: WANImpact Local
+
+FAILED
+description: if the avg-resp-time &gt;= [7.0] then fail
+
+Results: 
+
+avg-resp-time=100.0%
+
+Created N/A
+</failure>
+		</testcase>
+	</testsuite>
+	<testsuite disabled="0" errors="0" failures="1" name="com.neotys.TRANSACTION.PerInterval.BrowserUser_Create_report" skipped="0" tests="1" time="0">
+		<testcase name="avg-resp-time" classname="com.neotys.TRANSACTION.PerInterval.BrowserUser_Create_report">
+			<failure type="NeoLoad SLA" message="SLA failed">Container: submit report
+Path: User Paths &gt; BrowserUser_Create_report &gt; Init &gt; Actions &gt; submit report
+Virtual User: BrowserUser_Create_report
+SLA Profile: TRANSACTION
+SLA Type: Per Interval
+FAILED Type: avg-resp-time
+Project: Sample_Project
+Scenario: WANImpact Local
+
+FAILED
+description: if the avg-resp-time &gt;= [7.0] then fail
+
+Results: 
+
+avg-resp-time=100.0%
+
+Created N/A
+</failure>
+		</testcase>
+	</testsuite>
+	<testsuite disabled="0" errors="0" failures="0" name="com.neotys.TRANSACTION.PerInterval.BrowserUser_Create_report" skipped="0" tests="1" time="0">
+		<testcase name="avg-resp-time" classname="com.neotys.TRANSACTION.PerInterval.BrowserUser_Create_report"/>
+	</testsuite>
+	<testsuite disabled="0" errors="0" failures="0" name="com.neotys.REQUEST.PerInterval.MyiPhoneUser_Create_report" skipped="0" tests="1" time="0">
+		<testcase name="avg-resp-time" classname="com.neotys.REQUEST.PerInterval.MyiPhoneUser_Create_report"/>
+	</testsuite>
+	<testsuite disabled="0" errors="0" failures="0" name="com.neotys.TRANSACTION.PerInterval.MyiPhoneUser_Create_report" skipped="0" tests="1" time="0">
+		<testcase name="avg-resp-time" classname="com.neotys.TRANSACTION.PerInterval.MyiPhoneUser_Create_report"/>
+	</testsuite>
+</testsuites>
