@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><resource name="NeoLoadTests">
+<?xml version="1.0" encoding="UTF-8"?><testsuites name="NeoLoadTests">
    <testsuite name="com.neotys.DefaultSLA.PerTimeInterval.BrowserUser_Create_report">
       <testcase end="2" name="test_AverageResponseTime" result="failure" start="1">
          <failure type="NeoLoad SLA"> 
@@ -168,4 +168,4 @@ Created 2024-08-21 13:35:39 </failure>
          <success type="NeoLoad SLA"> everything is fine </success>
       </testcase>
    </testsuite>
-</resource>
+</testsuites>
