@@ -3,7 +3,7 @@
 ## Overview
 
 This command-line interface helps you launch and observe performance tests on the Neotys Web Platform. Since NeoLoad is very flexible to many deployment models (SaaS, self-hosted, cloud or local containers, etc.), configuration and test execution parameters depend on your licensing and infrastructure provisioning options.
-
+iRemove test
 
 | Property | Value |
 | ----------------    | ----------------   |
